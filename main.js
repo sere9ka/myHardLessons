@@ -17,5 +17,12 @@ switch (true){
         console.log('Switch: Это ещё что за язык то?');
 }
 
+let dayArr = [];
+dayArr.ru = ['понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота', 'воскресенье'], 
+dayArr.en = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
-lang === 'ru' ? console.log("жесть: Значит лови на русском: понедельник, вторник, среда, четверг, пятница, суббота, воскресенье") : lang === 'en' ? console.log("жесть: So catch in English: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday") : console.log('жесть: Это ещё что за язык то?');
+console.log(dayArr[lang]);
+
+let namePerson = prompt("Введите Ваше имя");
+
+namePerson === 'Артем' ? console.log("директор") : namePerson === 'Александр' ? console.log("преподаватель") : console.log('студент');
