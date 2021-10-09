@@ -1,14 +1,11 @@
-let num = 266219;
-let numStr = String(num)
-let result = 1;
+let num = 100;
 
-for (i = 0; i < numStr.length; i++) {
-    result = result * Number(numStr[i])
+
+nextPtime:
+for (let i = 2; i <= num; i++) {
+    for (let j = 2; j < i; j++) {
+        if (i % j == 0) continue nextPtime
+    }
+    console.log(i + ' Делители этого числа: ' + i + ', 1');
+    
 }
-
-console.log(result);
-
-resultDeg = result ** 3
-resultDegStr = String(resultDeg)
-
-console.log(resultDegStr.substr(0, 2));
