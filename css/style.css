@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.forInputs {
+    display: flex;
+    justify-content: space-between;
+    max-width: 360px;
+    width: 100%;
+    padding: 10px;
+}
+.forblocks {
+    display: flex;
+    justify-content: space-between;
+    max-width: 350px;
+    width: 100%;
+    padding: 20px;
+}
