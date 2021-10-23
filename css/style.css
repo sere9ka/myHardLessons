@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    position: relative;
+    height: 100vh;
+}
 .forInputs {
     display: flex;
     justify-content: space-between;

@@ -1,19 +1,18 @@
+// 1) Используя функцию-конструктор DomElement из основного задания №1, создать квадрат 100 на 100 пикселей. Ему необходимо задать фон(background) любого цвета и свойство position: absolute.
+
+// 2) Поместить его на страницу только после выполнения события DOMContentLoaded. Внутри тега body должно быть только подключение скрипта. (В случае подключения файла скрипта к странице перед закрывающим тэгом body)
+
+// 3) Написать обработчик события для keydown, который будет принимать callback-функцию. Данная функция будет отлавливать нажатие на стрелки клавиатуры. В зависимости от нажатой кнопки(Вверх - стрелка вверх, Влево - стрелка влево, Вправо - стрелка вправо, Вниз - стрелка вниз) наш квадрат будет перемещаться на 10 пикселей при каждом нажатии.
+
+
 'use strict'
-
-const forBlocks = document.querySelector('.forblocks')
-const inputOne = document.querySelector('.forblock1')
-const inputTwo = document.querySelector('.forblock2')
-
-inputOne.value = localStorage.textdiv;
-inputTwo.value = localStorage.textp;
-
 
 const DomElement = function (selectorClass, height, width, bg, fontSize) {
     this.selectorClass = selectorClass,
-        this.height = 'height: ' + height + ';',
-        this.width = 'width: ' + width + ';',
-        this.bg = 'background: ' + bg + ';',
-        this.fontSize = 'font-size: ' + fontSize + ';'
+        this.height = height,
+        this.width = width,
+        this.bg = bg,
+        this.fontSize = fontSize
 }
 
 DomElement.prototype.createNewElement = function () {
@@ -34,32 +33,47 @@ DomElement.prototype.createNewElement = function () {
     const newElement = getElement()
 
     if (newElement == newDiv) {
-        newElement.style.cssText = this.height + this.width + this.bg + this.fontSize
-        forBlocks.append(newElement)
+        newElement.style.position = 'absolute';
+        newElement.style.height = this.height;
+        newElement.style.width = this.width;
+        newElement.style.background = this.bg;
+        newElement.style.fontSize = this.fontSize;
+        newElement.style.top = 0 + 'px'
+        newElement.style.left = 0 + 'px'
+
+
+        document.body.append(newElement)
     } else if (newElement == newP) {
         newElement.style.cssText = this.height + this.width + this.bg + this.fontSize
-        forBlocks.append(newElement)
+        newElement.style.top = 0
+        document.body.append(newElement)
+    }
+
+    // this.bg + this.fontSize + 'top: 20px;' + 'left: 20px;'
+    console.dir(newElement);
+}
+const BlockElement1 = new DomElement('.block', '100px', '100px', 'red', '18px')
+
+const goToPlay = function (event) {
+    const square = document.querySelector('div');
+    let top = +square.style.top.slice(0, -2)
+    let left = +square.style.left.slice(0, -2)
+    switch (event.key) {
+        case "ArrowLeft":
+            square.style.left = (left - 10) + 'px'
+            break;
+        case "ArrowRight":
+            square.style.left = (left + 10) + 'px'
+            break;
+        case "ArrowUp":
+            square.style.top = (top - 10) + 'px'
+            break;
+        case "ArrowDown":
+            square.style.top = (top + 10) + 'px'
+            break;
     }
 }
-const BlockElement1 = new DomElement('.block', '120px', '150px', 'red', '18px')
-const BlockElement2 = new DomElement('#block', '120px', '150px', 'green', '28px')
 
-const editElement = function () {
-    const elementDiv = forBlocks.querySelector('div')
-    const elementP = forBlocks.querySelector('p')
 
-    elementDiv.textContent = inputOne.value
-    elementP.textContent = inputTwo.value
-
-    localStorage.textdiv = elementDiv.textContent
-    localStorage.textp = elementP.textContent
-
-}
-
-inputOne.addEventListener('input', editElement)
-inputTwo.addEventListener('input', editElement)
-
-BlockElement1.createNewElement()
-BlockElement2.createNewElement()
-
-editElement()
+document.addEventListener("DOMContentLoaded", BlockElement1.createNewElement());
+document.addEventListener('keydown', goToPlay)
