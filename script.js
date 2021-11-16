@@ -40,9 +40,13 @@ const getHourRules = function () {
 
 const getMinRules = function () {
     let momentMinut = momentDay.getMinutes();
-
-    if (momentMinut == 1 || momentMinut.splice(0, 1) == 1) {
+    let momentMinutStr = String(momentMinut)
+    let momentMinut1 = momentMinutStr.split('')[1]
+    // momentMinut.splice(0, 1) == 1
+    if (momentMinut == 1 || momentMinut1 == 1 ) {
         return wordMin = ' минута '
+    } else if (momentMinut > 1 && momentMinut < 5 || momentMinut > 15 && momentMinut1 > 1 && momentMinut1 < 5) {
+        return wordMin = ' минуты '
     } else {
         return wordMin = ' минут '
     }
@@ -50,9 +54,13 @@ const getMinRules = function () {
 
 const getSecRules = function () {
     let momentSecond = momentDay.getSeconds();
+    let momentSecondtStr = String(momentSecond)
+    let momentSecond1 = momentSecondtStr.split('')[1]
 
-    if (momentSecond[0] == 1 || momentSecond[1] == 1) {
+    if (momentSecond == 1 || momentSecond != 11 && momentSecond1 == 1) {
         return wordSec = ' секунда '
+    } else if (momentSecond > 1 && momentSecond < 5 || momentSecond > 15 && momentSecond1 > 1 && momentSecond1 < 5) {
+        return wordSec = ' секунды '
     } else {
         return wordMin = ' секунд '
     };
